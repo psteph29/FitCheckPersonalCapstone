@@ -2,7 +2,11 @@
 //  FitCheck.swift
 //  FitCheckPersonalCapstone
 //
-//  Created by Paige Stephenson on 9/1/23.
+//  Created by Paige Stephenson on 8/28/23.
 //
 
 import Foundation
+
+struct FitCheck: Codable {
+    var fitChecks: [OOTD]
+}
