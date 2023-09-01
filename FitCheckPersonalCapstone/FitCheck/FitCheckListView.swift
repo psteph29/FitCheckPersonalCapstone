@@ -83,50 +83,50 @@ struct FitCheckListView: View {
     }
     
     var body: some View {
-                NavigationView {
-        ScrollView {
-            LazyVGrid(columns: columns, spacing: 20) {
-                ForEach(cards) { card in
-                    CardView(imageName: card.imagePath())
-                        .onTapGesture {
-                            navigationPath.append(.fitCheckDetailView(card))
-                        }
+        NavigationView {
+            ScrollView {
+                LazyVGrid(columns: columns, spacing: 20) {
+                    ForEach(cards) { card in
+                        CardView(imageName: card.imagePath())
+                            .onTapGesture {
+                                navigationPath.append(.fitCheckDetailView(card))
+                            }
+                    }
+                    //                .onDelete(perform: deleteCard)
+                    
                 }
-                .onDelete(perform: deleteCard)
-                
+                .padding(20)
+                .background(customPink)
             }
-            .padding(20)
             .background(customPink)
-        }
-        .background(customPink)
-        .navigationTitle("Fit Checks")
-        .toolbar {
-//            ToolbarItemGroup(placement: .navigationBarTrailing) {
-//                Button(action: {
-//                    isShowingInputViewSheet = true
-//                }) {
-//                    Image(systemName: "plus")
-//                }
-               EditButton()
-                
-                
-                
-            }
-            .environment(\.editMode, $editMode)
-        }
-                
-        
-        .sheet(isPresented: $isShowingInputViewSheet, content: {
-            FitCheckInputView(contentController: contentController, navigationPath: $navigationPath)
-        })
+            .navigationTitle("Fit Checks")
+            .toolbar {
+                ToolbarItemGroup(placement: .navigationBarTrailing) {
+                    Button(action: {
+                        isShowingInputViewSheet = true
+                    }) {
+                        Image(systemName: "plus")
+                    }
+                    EditButton()
+                    
+                    
+                    
                 }
-    
-    func deleteCard(at offsets: IndexSet) {
-        contentController.fitCheck.fitChecks.remove(atOffsets: offsets)
+                //            .environment(\.editMode, $editMode)
+            }
+            
+            
+            .sheet(isPresented: $isShowingInputViewSheet, content: {
+                FitCheckInputView(contentController: contentController, navigationPath: $navigationPath, isShowing: $isShowingInputViewSheet)
+            })
+        }
+        
+        //    func deleteCard(at offsets: IndexSet) {
+        //        contentController.fitCheck.fitChecks.remove(atOffsets: offsets)
+        //    }
+        //
     }
-   
-    }
-
+}
     
 
 //

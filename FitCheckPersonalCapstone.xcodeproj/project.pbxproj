@@ -88,17 +88,17 @@
 			isa = PBXGroup;
 			children = (
 				AB5EC9992A93C12300EC3380 /* FitCheckPersonalCapstoneApp.swift */,
-				ABE3A86D2AA2259B00E06932 /* SaveDataContentControllers */,
-				ABE3A8682AA2254E00E06932 /* PhotoUpload */,
 				AB5EC99B2A93C12300EC3380 /* ContentView.swift */,
-				ABE3A8722AA225F600E06932 /* FitCheckDataStructures */,
 				ABE3A8582AA2241000E06932 /* ComplimentCards.swift */,
-				ABE3A8632AA224B100E06932 /* FitCheck */,
-				ABE3A85C2AA2241A00E06932 /* CategoryDataStructures */,
 				ABE3A8472AA222EA00E06932 /* FitCheckCalendarView.swift */,
 				ABE3A8492AA2231800E06932 /* CarouselView.swift */,
 				ABE3A8502AA2236900E06932 /* InputClothingItemView.swift */,
+				ABE3A8722AA225F600E06932 /* FitCheckDataStructures */,
+				ABE3A8632AA224B100E06932 /* FitCheck */,
+				ABE3A85C2AA2241A00E06932 /* CategoryDataStructures */,
 				ABE3A84D2AA2234800E06932 /* CategoryView */,
+				ABE3A86D2AA2259B00E06932 /* SaveDataContentControllers */,
+				ABE3A8682AA2254E00E06932 /* PhotoUpload */,
 				AB5EC99D2A93C12500EC3380 /* Assets.xcassets */,
 				AB5EC99F2A93C12500EC3380 /* Preview Content */,
 			);

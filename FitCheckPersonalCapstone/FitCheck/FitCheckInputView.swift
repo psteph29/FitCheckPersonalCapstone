@@ -20,8 +20,10 @@ struct FitCheckInputView: View {
     @State private var showingOptions = false
     @State private var navigateToFitCheckList = false
     
+    
     @ObservedObject var contentController: FitCheckContentController
     @Binding var navigationPath: [AppView]
+    @Binding var isShowing: Bool 
     
     
     var body: some View {
@@ -45,13 +47,13 @@ struct FitCheckInputView: View {
                                 }
                                 self.contentController.addFitCheck(imageURL: imageURL, date: fitCheckDate)
                                 print("addFitCheck has been called with imageURL: \(imageURL)")
-                                self.navigateToFitCheckList = true
+                                self.isShowing = false
                                 self.selectedImage = nil
                                 
 //                                self.eventStore.addOutfitToCalendar(on: fitCheckDate)
                                 
                             })
-                            NavigationLink("", destination: FitCheckListView(contentController: contentController, navigationPath: $navigationPath, dismissView: dismissView), isActive: $navigateToFitCheckList)
+//                            NavigationLink("", destination: FitCheckListView(contentController: contentController, navigationPath: $navigationPath, dismissView: dismissView), isActive: $navigateToFitCheckList)
                             Image(uiImage: selectedImage!)
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
@@ -103,8 +105,8 @@ struct FitCheckInputView: View {
     }
 }
 
-struct FitCheckInputView_Previews: PreviewProvider {
-    static var previews: some View {
-        FitCheckInputView(contentController: FitCheckContentController.shared, navigationPath: .constant([]))
-    }
-}
+//struct FitCheckInputView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        FitCheckInputView(contentController: FitCheckContentController.shared, navigationPath: .constant([]))
+//    }
+//}

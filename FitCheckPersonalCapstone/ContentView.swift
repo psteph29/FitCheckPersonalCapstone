@@ -28,6 +28,8 @@ struct ContentView: View {
     
     @State var navigationPath: [AppView] = []
     
+    @State private var isShowing = false
+    
     var body: some View {
         NavigationStack(path: $navigationPath) {
             TabView {
@@ -36,11 +38,11 @@ struct ContentView: View {
                         Image(systemName: "tshirt")
                         Text("My Closet")
                     }
-                FitCheckInputView(contentController: fitCheckContentController, navigationPath: $navigationPath)
-                    .tabItem {
-                        Image(systemName: "3.circle")
-                        Text("New Fit Check")
-                    }
+//                FitCheckInputView(contentController: fitCheckContentController, navigationPath: $navigationPath, isShowing: $is)
+//                    .tabItem {
+//                        Image(systemName: "3.circle")
+//                        Text("New Fit Check")
+//                    }
                 FitCheckListView(contentController: fitCheckContentController, navigationPath: $navigationPath)
                     .tabItem {
                         Image(systemName: "figure.stand")
@@ -70,7 +72,7 @@ struct ContentView: View {
                 case .fitCheckListView:
                     FitCheckListView(contentController: fitCheckContentController, navigationPath: $navigationPath)
                 case.fitCheckInputView:
-                    FitCheckInputView(contentController: fitCheckContentController, navigationPath: $navigationPath)
+                    FitCheckInputView(contentController: fitCheckContentController, navigationPath: $navigationPath, isShowing: $isShowing)
                 case .fitCheckDetailView(let ootd):
                     FitCheckDetailView(ootd: ootd)
                 }
