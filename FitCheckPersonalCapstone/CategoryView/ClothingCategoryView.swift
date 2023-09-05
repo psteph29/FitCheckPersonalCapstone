@@ -19,6 +19,7 @@ struct ClothingCategoryView: View {
     @State private var selection = "Add to closet"
     let options = ["Add a category", "Add a clothing item"]
     
+    @FocusState private var isFocused: Bool
     
     @EnvironmentObject var contentController: ClosetContentController
     
@@ -74,6 +75,13 @@ struct ClothingCategoryView: View {
                 Button("Cancel", action: cancel)
             } message: {
                 Text("Add to your closet")
+            }
+            .onChange(of: showingAlert) { newValue in
+                if newValue {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        isFocused = true
+                    }
+                }
             }
         }
     }

@@ -10,7 +10,7 @@ import SwiftUI
 struct FitCheckInputView: View {
     
     @State private var fitCheckDate = Date.now
-   
+    
     
     @Environment(\.dismiss) var dismiss
     
@@ -23,7 +23,7 @@ struct FitCheckInputView: View {
     
     @ObservedObject var contentController: FitCheckContentController
     @Binding var navigationPath: [AppView]
-    @Binding var isShowing: Bool 
+    @Binding var isShowing: Bool
     
     
     var body: some View {
@@ -34,11 +34,22 @@ struct FitCheckInputView: View {
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 500, height: 130)
-                    VStack {
-                        
+                    VStack(spacing: 20) {
                         if selectedImage != nil {
+                            Image(uiImage: selectedImage!)
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: 300, height: 200)
+                            Spacer()
                             
-                            Button("Save OOTD", action: {
+                            DatePicker(selection: $fitCheckDate, in: ...Date.now, displayedComponents: .date) {
+                                
+                                Image("TellUsWhenYouWoreThis")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                            }
+                            .padding(20)
+                            Button(action: {
                                 print("Save OOTD button tapped")
                                 guard let selectedImage = self.selectedImage,
                                       let imageURL = contentController.saveImageToDisk(image: selectedImage) else {
@@ -49,28 +60,19 @@ struct FitCheckInputView: View {
                                 print("addFitCheck has been called with imageURL: \(imageURL)")
                                 self.isShowing = false
                                 self.selectedImage = nil
-                                
-//                                self.eventStore.addOutfitToCalendar(on: fitCheckDate)
-                                
-                            })
-//                            NavigationLink("", destination: FitCheckListView(contentController: contentController, navigationPath: $navigationPath, dismissView: dismissView), isActive: $navigateToFitCheckList)
-                            Image(uiImage: selectedImage!)
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 300, height: 300)
-                            
-                            DatePicker(selection: $fitCheckDate, in: ...Date.now, displayedComponents: .date) {
-                                Text("Tell us when you wore this!")
+                            }) {
+                                Image("ShareOOTD")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 300, height: 150)
                             }
+                            
                         } else {
-                            //                            BaseFitCheckInputView()
                             Image("AddToMyCloset")
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .frame(width: 400, height: 400)
-                            
                             VStack {
-                                
                                 Button(action: {
                                     showingOptions = true
                                 }) {

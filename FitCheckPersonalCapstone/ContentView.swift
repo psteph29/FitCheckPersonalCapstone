@@ -53,18 +53,18 @@ struct ContentView: View {
                         Image(systemName: "calendar")
                         Text("Calendar")
                     }
-                CarouselView()
-                    .tabItem {
-                        Text("CarouselView")
-                    }
+//                CarouselView()
+//                    .tabItem {
+//                        Text("CarouselView")
+//                    }
                 
             }
             .navigationDestination(for: AppView.self) { appView in
                 switch appView {
                 case .categoryView:
                     ClothingCategoryView(navigationPath: $navigationPath)
-                case .carouselView:
-                    CarouselView()
+//                case .carouselView:
+//                    CarouselView()
                 case .inputClothingView(let category):
                     InputClothingItemView(navigationPath: $navigationPath, initialCategory: category)
                 case .categoryItemDetailView(let category):
@@ -74,7 +74,16 @@ struct ContentView: View {
                 case.fitCheckInputView:
                     FitCheckInputView(contentController: fitCheckContentController, navigationPath: $navigationPath, isShowing: $isShowing)
                 case .fitCheckDetailView(let ootd):
-                    FitCheckDetailView(ootd: ootd)
+                    FitCheckDetailView(
+                        selectedImage: "someImageStringHere",
+                        ootd: ootd,
+                        showShareSheet: false,  // or whatever initial value you want
+                        showTellWhatYouWoreSheet: false,  // or whatever initial value you want
+                        listOfArticlesChosen: [],  // or whatever initial value you want
+                        contentController: fitCheckContentController
+                    )
+                default:
+                    fatalError()
                 }
             }
             .environmentObject(contentController)

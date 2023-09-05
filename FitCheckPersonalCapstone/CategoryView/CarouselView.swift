@@ -19,6 +19,8 @@ struct CarouselView: View {
 //    @ObservedObject var contentController = ClosetContentController.shared
     
     @State private var selectedCardIDs = [String: Bool]()
+    @Binding var ShowTellWhatYouWoreIsPresented: Bool
+    @Binding var listOfArticlesChosen: [ClothingArticle]
     
     var body: some View {
         NavigationView {
@@ -43,6 +45,15 @@ struct CarouselView: View {
                                 
                             }
                         }
+                    }
+                    Button("Catalog outfit") {
+                        ShowTellWhatYouWoreIsPresented = false
+                        listOfArticlesChosen = contentController.theCloset.clothingCategories.flatMap { category in
+                            return category.clothingArticles.filter { article in
+                                selectedCardIDs[article.id, default: false]
+                            }
+                        }
+
                     }
                 }
                 .navigationTitle("Clothing Collection")
@@ -77,9 +88,9 @@ struct SelectableCardView: View {
         }
     }
 }
-
-struct CarouselView_Previews: PreviewProvider {
-    static var previews: some View {
-        CarouselView()
-    }
-}
+//
+//struct CarouselView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CarouselView()
+//    }
+//}
